@@ -1,0 +1,87 @@
+/* Main UI font: IBMPlex */
+@font-face {
+	font-family: IBMPlex;
+	src: url(fonts/ui/IBMPlexSansVar-Roman.woff2);
+	font-weight: 300 700;
+}
+
+/* Symbols UI font: FontAwesome: https://fontawesome.com/ */
+@font-face {
+	font-family: FontAwesome;
+	src: url(fonts/ui/fa-regular-400.woff2) format("woff2");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: FontAwesome;
+	src: url(fonts/ui/fa-solid-900.woff2) format("woff2");
+	font-weight: bold;
+}
+
+body {
+	font-size: 12px;
+	font-family: IBMPlex;
+	background-color: #303030;
+}
+
+h1 {
+	font-size: 18px;
+}
+
+.panel {
+	float: left;
+	position: relative;
+	width: 300px;
+	height: 400px;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.panel li.axis-record {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: 60px auto 60px;
+}
+
+.panel input[type=range] {
+}
+
+.title {
+	background-color: lightgrey;
+}
+
+.fontbox {
+	display: none;
+	background-color: white;
+}
+
+.sample {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.sample.large {
+	font-size: 96px;
+}
+
+.sample.medium {
+	font-size: 36px;
+}
+
+.sample.small {
+	font-size: 10px;
+}
+
+.reset {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 10px;
+	top: 14px;
+	font-size: 150%;
+	font-family: FontAwesome;
+	font-weight: bold;
+	text-align: center;
