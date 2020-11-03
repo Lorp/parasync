@@ -164,5 +164,11 @@ fonts.forEach (font => {
 });
 
 
+Q(".panel.title .reset").onclick = function () {
+	updateFvs(true);
+};
+
+
 updateFvs(true);
+
 

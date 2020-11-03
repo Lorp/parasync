@@ -85,3 +85,5 @@ h1 {
 	font-family: FontAwesome;
 	font-weight: bold;
 	text-align: center;
+	cursor: pointer;
+}
