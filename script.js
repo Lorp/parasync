@@ -53,13 +53,13 @@ let fonts = [
 	},
 
 	{
-		name: "CaliperFlex-VF",
+		name: "CaliperFlex",
 		src: "url(fonts/CaliperFlex-VF.ttf)",
 	},
 
 	{
-		name: "RL-VF",
-		src: "url(fonts/RL-VF.ttf)",
+		name: "Squeak",
+		src: "url(fonts/Squeak-VF.ttf)",
 	},
 
 ];
