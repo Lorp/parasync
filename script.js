@@ -144,7 +144,6 @@ Object.keys(axes).forEach(tag => {
 });
 
 
-
 fonts.forEach (font => {
 	let fontBox = Q(".panel.fontbox").cloneNode(true); // deep clone
 	fontBox.innerHTML = fontBox.innerHTML.replace("$FONTNAME$", font.name);
@@ -164,11 +163,30 @@ fonts.forEach (font => {
 });
 
 
+// handle reset
 Q(".panel.title .reset").onclick = function () {
 	updateFvs(true);
 };
 
+// handle text entry in the editable fields: copy it to all other fields of that size
+Qall(".sample").forEach(sample => {
+	sample.addEventListener("input", e => {
+		
+		let size;
+		if (e.target.classList.contains("small"))
+			size = "small";
+		else if (e.target.classList.contains("medium"))
+			size = "medium";
+		else if (e.target.classList.contains("large"))
+			size = "large";
+
+		Qall(`.${size}`).forEach(el => {
+			if (el != e.target)
+				el.textContent = e.target.textContent;
+		});
+	});
+});
+
 
 updateFvs(true);
-
 
