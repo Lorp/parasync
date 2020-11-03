@@ -33,6 +33,11 @@ function updateFvs (initialize) {
 let fonts = [
 
 	{
+		name: "Amstelvar-Roman Parametric",
+		src: "url(fonts/Amstelvar-Roman-parametric-VF.ttf)",
+	},
+
+	{
 		name: "Amstelvar-Roman",
 		src: "url(fonts/Amstelvar-Roman[wdth,wght,opsz].ttf)",
 	},
@@ -119,17 +124,12 @@ Object.keys(axes).forEach(tag => {
 	let input = EL("input");
 	let numeric = EL("input");
 
-	console.log(input);
-	console.log(axis);
-
 	input.setAttribute("type", "range");
 	input.setAttribute("min", axis.min);
 	input.setAttribute("max", axis.max);
 	input.setAttribute("value", 5);
 	label.textContent = tag;
 	numeric.setAttribute("type", "text");
-
-	console.log(Q("#sliders"));
 
 	row.appendChild(label);
 	row.appendChild(input);
@@ -147,18 +147,19 @@ Object.keys(axes).forEach(tag => {
 fonts.forEach (font => {
 	let fontBox = Q(".panel.fontbox").cloneNode(true); // deep clone
 	fontBox.innerHTML = fontBox.innerHTML.replace("$FONTNAME$", font.name);
+	let match = font.src.match(/(\/|\()([^/(]+)\)$/);
+	fontBox.innerHTML = fontBox.innerHTML.replace("$FILENAME$", match[2]);
 	fontBox.style.display = "inline-block";
-
 	let fontFamily = "DEFAULT-" + font.name;
 	let webfontFace = new FontFace(fontFamily, font.src);
-	console.log(font.src);
 	webfontFace.load().then(webfontFace => {
 		document.fonts.add(webfontFace);
 	});
 
 	fontBox.querySelectorAll(".sample").forEach(el => { el.style.fontFamily = fontFamily} );
 
-	Q("#container").appendChild(fontBox);
+	//Q("#container").appendChild(fontBox);
+	Q("#container").insertBefore(fontBox, Q(".panel.dragdrop"));
 
 });
 
