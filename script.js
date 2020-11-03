@@ -32,10 +32,10 @@ function updateFvs (initialize) {
 
 let fonts = [
 
-	{
-		name: "Amstelvar-Roman Parametric",
-		src: "url(fonts/Amstelvar-Roman-parametric-VF.ttf)",
-	},
+	// {
+	// 	name: "Amstelvar-Roman Parametric",
+	// 	src: "url(fonts/Amstelvar-Roman-parametric-VF.ttf)",
+	// },
 
 	{
 		name: "Amstelvar-Roman",
