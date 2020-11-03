@@ -46,7 +46,8 @@ h1 {
 	grid-template-columns: 60px auto 60px;
 }
 
-.panel input[type=range] {
+.panel input[type=text] {
+	text-align: right;
 }
 
 .title {
