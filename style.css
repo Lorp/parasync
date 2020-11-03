@@ -36,6 +36,7 @@ h1 {
 	margin: 5px;
 	padding: 5px;
 	border-radius: 10px;
+	overflow: hidden;
 }
 
 .panel li.axis-record {
