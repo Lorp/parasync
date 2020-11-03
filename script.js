@@ -33,27 +33,27 @@ function updateFvs (initialize) {
 let fonts = [
 
 	{
-		name: "Amstelvar Alpha",
+		name: "Amstelvar-Roman",
 		src: "url(fonts/Amstelvar-Roman[wdth,wght,opsz].ttf)",
 	},
 
 	{
-		name: "Roboto Flex",
+		name: "RobotoFlex",
 		src: "url(fonts/RobotoFlex[slnt,wdth,wght,opsz].ttf)",
 	},
 
 	{
-		name: "Science Gothic",
+		name: "ScienceGothic",
 		src: "url(fonts/ScienceGothic[YOPQ,wdth,wght,slnt].ttf)",
 	},
 
 	{
-		name: "Caliper Flex",
+		name: "CaliperFlex-VF",
 		src: "url(fonts/CaliperFlex-VF.ttf)",
 	},
 
 	{
-		name: "RL",
+		name: "RL-VF",
 		src: "url(fonts/RL-VF.ttf)",
 	},
 
