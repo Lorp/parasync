@@ -10,8 +10,14 @@ function Qall (selector) {
 	return document.querySelectorAll(selector);
 }
 
-function EL (tag) {
-	return document.createElement(tag);
+function EL (tag, attrs) {
+	let el = document.createElement(tag);
+	if (attrs) {
+		Object.keys(attrs).forEach(property => {
+			el[property] = attrs[property];
+		});
+	}
+	return el;
 }
 
 function updateFvs (initialize) {
@@ -31,116 +37,37 @@ function updateFvs (initialize) {
 }
 
 let fonts = [
-
-	// {
-	// 	name: "Amstelvar-Roman Parametric",
-	// 	src: "url(fonts/Amstelvar-Roman-parametric-VF.ttf)",
-	// },
-
-	{
-		name: "Amstelvar-Roman",
-		src: "url(fonts/Amstelvar-Roman[wdth,wght,opsz].ttf)",
-	},
-
-	{
-		name: "RobotoFlex",
-		src: "url(fonts/RobotoFlex[slnt,wdth,wght,opsz].ttf)",
-	},
-
-	{
-		name: "ScienceGothic",
-		src: "url(fonts/ScienceGothic[YOPQ,wdth,wght,slnt].ttf)",
-	},
-
-	{
-		name: "CaliperFlex",
-		src: "url(fonts/CaliperFlex-VF.ttf)",
-	},
-
-	{
-		name: "Squeak",
-		src: "url(fonts/Squeak-VF.ttf)",
-	},
-
+	{ name: "Amstelvar-Roman", src: "url(fonts/Amstelvar-Roman[wdth,wght,opsz].ttf)" },
+	{ name: "RobotoFlex", src: "url(fonts/RobotoFlex[slnt,wdth,wght,opsz].ttf)" },
+	{ name: "ScienceGothic", src: "url(fonts/ScienceGothic[YOPQ,wdth,wght,slnt].ttf)" },
+	{ name: "CaliperFlex", src: "url(fonts/CaliperFlex-VF.ttf)" },
+	{ name: "Squeak", src: "url(fonts/Squeak-VF.ttf)" },
 ];
 
-
 let axes = {
-
-	XOPQ: {
-		min: 1,
-		max: 1000,
-		default: 110,
-	},
-	XTRA: {
-		min: 1,
-		max: 1000,
-		default: 500,
-	},
-	YOPQ: {
-		min: 1,
-		max: 1000,
-		default: 75,
-	},
-	YTUC: {
-		min: 1,
-		max: 1000,
-		default: 640,
-	},
-	YTSE: {
-		min: 1,
-		max: 1000,
-		default: 90,
-	},
-	YOSE: {
-		min: 1,
-		max: 1000,
-		default: 90,
-	},
-	YTLC: {
-		min: 1,
-		max: 1000,
-		default: 500,
-	},
-	YTAS: {
-		min: 1,
-		max: 1000,
-		default: 740,
-	},
-	YTDE: {
-		min: -1000,
-		max: 0,
-		default: -200,
-	},
+	XOPQ: { min: 1, max: 1000, default: 110 },
+	XTRA: { min: 1, max: 1000, default: 500 },
+	YOPQ: { min: 1, max: 1000, default: 75 },
+	YTUC: { min: 1, max: 1000, default: 640 },
+	YTSE: { min: 1, max: 1000, default: 90 },
+	YOSE: { min: 1, max: 1000, default: 90 },
+	YTLC: { min: 1, max: 1000, default: 500 },
+	YTAS: { min: 1, max: 1000, default: 740 },
+	YTDE: { min: -1000, max: 0, default: -200 },
 };
 
 
 Object.keys(axes).forEach(tag => {
 	let axis = axes[tag];
 	let row = EL("li");
+	let label = EL("label", {textContent: tag});
+	let input = EL("input", {type: "range", min: axis.min, max: axis.max, value: 5});
+	let numeric = EL("input", {type: "text"});
+
+	input.addEventListener("input", e => updateFvs() );
 	row.classList.add("axis-record");
-
-	let label = EL("label");
-	let input = EL("input");
-	let numeric = EL("input");
-
-	input.setAttribute("type", "range");
-	input.setAttribute("min", axis.min);
-	input.setAttribute("max", axis.max);
-	input.setAttribute("value", 5);
-	label.textContent = tag;
-	numeric.setAttribute("type", "text");
-
-	row.appendChild(label);
-	row.appendChild(input);
-	row.appendChild(numeric);
-
-	Q("#sliders").appendChild(row);
-
-	input.addEventListener("input", e => {
-		updateFvs();
-	})
-
+	row.append(label, input, numeric);
+	Q("#sliders").append(row);
 });
 
 
@@ -158,7 +85,6 @@ fonts.forEach (font => {
 
 	fontBox.querySelectorAll(".sample").forEach(el => { el.style.fontFamily = fontFamily} );
 
-	//Q("#container").appendChild(fontBox);
 	Q("#container").insertBefore(fontBox, Q(".panel.dragdrop"));
 
 });
