@@ -114,3 +114,7 @@ h3 {
 	height: 100%;
 	opacity: 0;
 }
+
+p {
+	margin-block-end: 0;
+}
