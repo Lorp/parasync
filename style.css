@@ -31,9 +31,6 @@ h1 {
 h2 {
 	font-size: 18px;
 	font-weight: bold;
-}
-
-.fontbox h2 {
 	margin-bottom: 0;
 }
 
@@ -109,4 +106,11 @@ h3 {
 
 .dragdrop {
 	background-color: beige;
+}
+
+#dropzone {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
 }

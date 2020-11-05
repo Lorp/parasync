@@ -36,6 +36,33 @@ function updateFvs (initialize) {
 	Qall(".sample").forEach(el => { el.style.fontVariationSettings = fvsA.join(); });	
 }
 
+function newFontPanel(font) {
+
+	let filename = font.filename || "";
+	let fontBox = Q(".panel.fontbox").cloneNode(true); // deep clone
+	fontBox.innerHTML = fontBox.innerHTML.replace("$FONTNAME$", font.name);
+
+	if (typeof font.src == "string") {
+		let match = font.src.match(/(\/|\()([^/(]+)\)$/);
+		filename = match[2];
+	}
+	fontBox.innerHTML = fontBox.innerHTML.replace("$FILENAME$", filename);
+	fontBox.style.display = "inline-block";
+	let family = font.family || "DEFAULT-" + font.name;
+	let webfontFace = new FontFace(family, font.src);
+
+	webfontFace.load().then(webfontFace => {
+		document.fonts.add(webfontFace);
+		fontBox.querySelectorAll(".sample").forEach(el => { el.style.fontFamily = webfontFace.family} );
+	});
+
+	Q("#container").insertBefore(fontBox, Q(".panel.dragdrop"));
+}
+
+
+// initialize things
+let dragdropId = 0;
+
 let fonts = [
 	{ name: "Amstelvar-Roman", src: "url(fonts/Amstelvar-Roman[wdth,wght,opsz].ttf)" },
 	{ name: "RobotoFlex", src: "url(fonts/RobotoFlex[slnt,wdth,wght,opsz].ttf)" },
@@ -56,7 +83,7 @@ let axes = {
 	YTDE: { min: -1000, max: 0, default: -200 },
 };
 
-
+// add axis ui
 Object.keys(axes).forEach(tag => {
 	let axis = axes[tag];
 	let row = EL("li");
@@ -70,25 +97,9 @@ Object.keys(axes).forEach(tag => {
 	Q("#sliders").append(row);
 });
 
-
-fonts.forEach (font => {
-	let fontBox = Q(".panel.fontbox").cloneNode(true); // deep clone
-	fontBox.innerHTML = fontBox.innerHTML.replace("$FONTNAME$", font.name);
-	let match = font.src.match(/(\/|\()([^/(]+)\)$/);
-	fontBox.innerHTML = fontBox.innerHTML.replace("$FILENAME$", match[2]);
-	fontBox.style.display = "inline-block";
-	let fontFamily = "DEFAULT-" + font.name;
-	let webfontFace = new FontFace(fontFamily, font.src);
-	webfontFace.load().then(webfontFace => {
-		document.fonts.add(webfontFace);
-	});
-
-	fontBox.querySelectorAll(".sample").forEach(el => { el.style.fontFamily = fontFamily} );
-
-	Q("#container").insertBefore(fontBox, Q(".panel.dragdrop"));
-
-});
-
+// add fontbox panels for all the default fonts
+for (let font of fonts)
+	newFontPanel(font);
 
 // handle reset
 Q(".panel.title .reset").onclick = function () {
@@ -114,6 +125,18 @@ Qall(".sample").forEach(sample => {
 	});
 });
 
+// handle dragdrop
+Q("#dropzone").onchange = e => {
+	const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+    	let family = `DRAGDROP-${dragdropId}`;
+    	let name = file.name.replace(/\.ttf$/, "");
+		newFontPanel({name: name, family: family, src: this.result, filename: file.name});
+		dragdropId++;
+	};
+	reader.readAsArrayBuffer(file); // https://stackoverflow.com/questions/22659164/read-a-drag-and-dropped-file
+}
 
+// set axes to default locations
 updateFvs(true);
-
