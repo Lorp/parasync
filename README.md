@@ -6,4 +6,8 @@ A web app to test multiple parametric variable fonts at the same time.
 
 Please feel free to use ParaSync in your own testing and for public demos of parametric fonts. Contact the author for licensing.
 
-© All rights reserved
+---
+
+ParaSync © Laurence Penney 2020, all rights reserved  
+CaliperFlex © Ryan Williamson 2020, all rights reserved  
+Squeak © Radek Łukasiewicz 2020, all rights reserved  
