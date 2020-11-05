@@ -125,17 +125,18 @@ Qall(".sample").forEach(sample => {
 	});
 });
 
-// handle dragdrop
+// handle dragdrop (multiple is ok)
 Q("#dropzone").onchange = e => {
-	const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-    	let family = `DRAGDROP-${dragdropId}`;
-    	let name = file.name.replace(/\.ttf$/, "");
-		newFontPanel({name: name, family: family, src: this.result, filename: file.name});
-		dragdropId++;
-	};
-	reader.readAsArrayBuffer(file); // https://stackoverflow.com/questions/22659164/read-a-drag-and-dropped-file
+	for (let file of e.target.files) {
+	    const reader = new FileReader();
+	    reader.onload = function (e) {
+	    	let family = `DRAGDROP-${dragdropId}`;
+	    	let name = file.name.replace(/\.ttf$/, "");
+			newFontPanel({name: name, family: family, src: this.result, filename: file.name});
+			dragdropId++;
+		};
+		reader.readAsArrayBuffer(file);
+	}
 }
 
 // set axes to default locations
