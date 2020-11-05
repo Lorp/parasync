@@ -89,7 +89,7 @@ Object.keys(axes).forEach(tag => {
 	let row = EL("li");
 	let label = EL("label", {textContent: tag});
 	let input = EL("input", {type: "range", min: axis.min, max: axis.max, value: 5});
-	let numeric = EL("input", {type: "text"});
+	let numeric = EL("input", {type: "text", readOnly: true});
 
 	input.addEventListener("input", e => updateFvs() );
 	row.classList.add("axis-record");
