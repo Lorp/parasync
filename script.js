@@ -12,17 +12,14 @@ function Qall (selector) {
 
 function EL (tag, attrs) {
 	let el = document.createElement(tag);
-	if (attrs) {
-		Object.keys(attrs).forEach(property => {
-			el[property] = attrs[property];
-		});
-	}
+	if (attrs)
+		Object.assign(el, attrs);
 	return el;
 }
 
 function updateFvs (initialize) {
 
-	let fvsA = [];
+	let fvsA = [], fvsS;
 	Qall("#sliders li").forEach(li => {
 		let elRange = li.querySelector("input[type=range]");
 		let elText = li.querySelector("input[type=text]");
@@ -31,9 +28,10 @@ function updateFvs (initialize) {
 			elRange.value = axes[tag].default;
 		fvsA.push(`"${tag}" ${elRange.value}`);
 		elText.value = elRange.value;
-
 	});
-	Qall(".sample").forEach(el => { el.style.fontVariationSettings = fvsA.join(); });	
+	fvsS = fvsA.join();
+	for (let el of Qall(".sample"))
+		el.style.fontVariationSettings = fvsS;
 }
 
 function newFontPanel(font) {
@@ -53,7 +51,8 @@ function newFontPanel(font) {
 
 	webfontFace.load().then(webfontFace => {
 		document.fonts.add(webfontFace);
-		fontBox.querySelectorAll(".sample").forEach(el => { el.style.fontFamily = webfontFace.family} );
+		for (let el of fontBox.querySelectorAll(".sample"))
+			el.style.fontFamily = webfontFace.family;
 	});
 
 	Q("#container").insertBefore(fontBox, Q(".panel.dragdrop"));
@@ -102,12 +101,12 @@ for (let font of fonts)
 	newFontPanel(font);
 
 // handle reset
-Q(".panel.title .reset").onclick = function () {
+Q(".panel.title .reset").onclick = () => {
 	updateFvs(true);
 };
 
 // handle text entry in the editable fields: copy it to all other fields of that size
-Qall(".sample").forEach(sample => {
+for (let sample of Qall(".sample")) {
 	sample.addEventListener("input", e => {
 		
 		let size;
@@ -118,12 +117,12 @@ Qall(".sample").forEach(sample => {
 		else if (e.target.classList.contains("large"))
 			size = "large";
 
-		Qall(`.${size}`).forEach(el => {
+		for (let el of Qall(`.${size}`)) {
 			if (el != e.target)
 				el.textContent = e.target.textContent;
-		});
+		}
 	});
-});
+}
 
 // handle dragdrop (multiple is ok)
 Q("#dropzone").onchange = e => {
