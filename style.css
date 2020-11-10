@@ -18,6 +18,11 @@
 	font-weight: bold;
 }
 
+@font-face {
+	font-family: AdobeBlank;
+	src: url(fonts/ui/AdobeBlank.woff2) format("woff2"); /* Adobe Blank v1: curiously, Adobe Blank v2 causes problems in Safari in contentEditable divs */
+}
+
 body {
 	font-size: 12px;
 	font-family: IBMPlex;

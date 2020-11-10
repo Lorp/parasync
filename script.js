@@ -52,7 +52,7 @@ function newFontPanel(font) {
 	webfontFace.load().then(webfontFace => {
 		document.fonts.add(webfontFace);
 		for (let el of fontBox.querySelectorAll(".sample"))
-			el.style.fontFamily = webfontFace.family;
+			el.style.fontFamily = `${webfontFace.family},AdobeBlank`;
 	});
 
 	Q("#container").insertBefore(fontBox, Q(".panel.dragdrop"));
@@ -72,7 +72,7 @@ let fonts = [
 
 let axes = {
 	XOPQ: { min: 1, max: 1000, default: 110 },
-	XTRA: { min: 1, max: 1000, default: 500 },
+	XTRA: { min: 1, max: 1000, default: 340 },
 	YOPQ: { min: 1, max: 1000, default: 75 },
 	YTUC: { min: 1, max: 1000, default: 640 },
 	YTSE: { min: 1, max: 1000, default: 90 },
@@ -136,6 +136,7 @@ Q("#dropzone").onchange = e => {
 		};
 		reader.readAsArrayBuffer(file);
 	}
+    Q(".panel.dragdrop form").reset();
 }
 
 // set axes to default locations
