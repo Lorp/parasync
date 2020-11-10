@@ -11,3 +11,4 @@ Please feel free to use ParaSync in your own testing and for public demos of par
 ParaSync © Laurence Penney 2020, all rights reserved  
 CaliperFlex © Ryan Williamson 2020, all rights reserved  
 Squeak © Radek Łukasiewicz 2020, all rights reserved  
+Mihuri © Geneviève Cugnart 2020, all rights reserved  

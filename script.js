@@ -68,6 +68,7 @@ let fonts = [
 	{ name: "ScienceGothic", src: "url(fonts/ScienceGothic[YOPQ,wdth,wght,slnt].ttf)" },
 	{ name: "CaliperFlex", src: "url(fonts/CaliperFlex-VF.ttf)" },
 	{ name: "Squeak", src: "url(fonts/Squeak-VF.ttf)" },
+	{ name: "Mihuri", src: "url(fonts/Mihuri_Para.ttf)" },
 ];
 
 let axes = {
