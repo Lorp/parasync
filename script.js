@@ -65,6 +65,7 @@ let dragdropId = 0;
 let fonts = [
 	{ name: "Amstelvar", src: "url(fonts/AmstelvarA2-Roman_avar2.ttf)" },
 	{ name: "RobotoFlex", src: "url(fonts/RobotoA2-avar2-VF.ttf)" },
+	{ name: "RobotoFlex release", src: "url(fonts/RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].ttf)" },
 	{ name: "ScienceGothic", src: "url(fonts/ScienceGothic[YOPQ,wdth,wght,slnt].ttf)" },
 	{ name: "CaliperFlex", src: "url(fonts/CaliperFlex-VF.ttf)" },
 	{ name: "Squeak", src: "url(fonts/Squeak-VF.ttf)" },
