@@ -63,8 +63,8 @@ function newFontPanel(font) {
 let dragdropId = 0;
 
 let fonts = [
-	{ name: "Amstelvar-Roman", src: "url(fonts/Amstelvar-Roman[wdth,wght,opsz].ttf)" },
-	{ name: "RobotoFlex", src: "url(fonts/RobotoFlex[slnt,wdth,wght,opsz].ttf)" },
+	{ name: "Amstelvar", src: "url(fonts/AmstelvarA2-Roman_avar2.ttf)" },
+	{ name: "RobotoFlex", src: "url(fonts/RobotoA2-avar2-VF.ttf)" },
 	{ name: "ScienceGothic", src: "url(fonts/ScienceGothic[YOPQ,wdth,wght,slnt].ttf)" },
 	{ name: "CaliperFlex", src: "url(fonts/CaliperFlex-VF.ttf)" },
 	{ name: "Squeak", src: "url(fonts/Squeak-VF.ttf)" },
