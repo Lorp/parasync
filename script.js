@@ -53,7 +53,6 @@ function updateFvs (initialize) {
 
 function newFontPanel(font) {
 
-	let filename = font.filename || "";
 	let fontBox = Q(".panel.fontbox").cloneNode(true); // deep clone
 	font.node = fontBox;
 	fontBox.innerHTML = fontBox.innerHTML.replace("$FONTNAME$", font.name);
@@ -99,6 +98,21 @@ function newFontPanel(font) {
 
 		Q("#container").insertBefore(fontBox, Q(".panel.dragdrop"));
 	}
+
+	// reset any parametric axes that are in this font to this font’s defaults
+	Q(".reset", fontBox).onclick = () => {
+		if (font.fvar) {
+			QA(".axis-record").forEach (axisEl => {
+				const axisTag = axisEl.querySelector("label").textContent;
+				const axis = font.fvar.axes.find(a => a.axisTag == axisTag);
+				if (axis) {
+					Q("input[type=range]", axisEl).value = 
+					Q("input[type=text]", axisEl).value = axis.defaultValue;;
+				}
+			});
+			updateFvs();
+		}
+	};
 }
 
 
@@ -115,7 +129,7 @@ let fonts = [
 ];
 
 // these are the editable parametric axes
-let axes = {
+const axes = {
 	XOPQ: { min: 1, max: 1000, default: 110 },
 	XTRA: { min: 1, max: 1000, default: 340 },
 	YOPQ: { min: 1, max: 1000, default: 75 },
